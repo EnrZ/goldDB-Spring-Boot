@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<body class = "container">
+
+<h1>Add Course</h1>
+
+<form method="POST" action="/courses/addcourse">
+    <div class ="form-group">
+        <label>Course Name
+            <input th:field="${course.name}" class="form-control">
+        </label>
+    </div>
+    <div class ="form-group">
+        <label>Course location
+            <input th:field="${course.location}" class="form-control">
+        </label>
+    </div>
+    <div class ="form-group">
+        <input type="submit" value="Add Course" class="btn-success">
+    </div>
+</form>
+</body>
+</html>

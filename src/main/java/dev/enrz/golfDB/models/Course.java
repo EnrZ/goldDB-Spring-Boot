@@ -3,8 +3,11 @@ package dev.enrz.golfDB.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Course {
@@ -24,12 +27,15 @@ public class Course {
         return cid;
     }
 
+    @OneToMany(mappedBy = "course")
+    private final List<Round> rounds = new ArrayList<>();
     public Course(){
 
     }
-    public Course(int pid, String name) {
+    public Course(int cid, String name, String location) {
         this.cid = cid;
         this.name = name;
+        this.location = location;
     }
 
     public String getName() {
@@ -46,5 +52,13 @@ public class Course {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public List<Round> getRounds() {
+        return rounds;
+    }
+
+    public int getCid() {
+        return cid;
     }
 }

@@ -1,12 +1,14 @@
 package dev.enrz.golfDB.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import net.bytebuddy.asm.Advice;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+
 
 @Entity
 public class Round {
@@ -14,9 +16,13 @@ public class Round {
     @GeneratedValue
     private int rid;
 
-    @Size(min = 3, max = 50, message = "Between 3 and 50 characters for now(change to required formatting)")
-    @NotBlank(message = "Date is required")
+    @NotBlank(message="required")
+    @Pattern(regexp = "[0-9]{2}/[0-9]{2}/[0-9]{4}", message="mm/dd/yyyy format required")
     private String date;
+
+    @NotBlank(message = "required")
+    @Pattern(regexp = "^\\d+$", message = "score must be a number")
+    private String score;
 
     public int getId() {
         return rid;
@@ -36,11 +42,11 @@ public class Round {
         this.course = course;
     }
 
-    public String getDate() {
+    public String  getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(String  date) {
         this.date = date;
     }
 
@@ -54,5 +60,13 @@ public class Round {
 
     public int getRid() {
         return rid;
+    }
+
+    public String  getScore() {
+        return score;
+    }
+
+    public void setScore(String  score) {
+        this.score = score;
     }
 }

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
+<head th:replace="fragments :: head"></head>
+
 <body class = "container">
 
 <h1>Add Round</h1>
@@ -10,6 +12,7 @@
         <label>Date
             <input th:field="${round.date}" class="form-control">
         </label>
+        <p class="error" th:errors="${round.date}"></p>
     </div>
     <div class = "form-group">
         <label> Course
@@ -20,6 +23,12 @@
                 </option>
             </select>
         </label>
+    </div>
+    <div class ="form-group">
+        <label>Score
+            <input th:field="${round.score}" class="form-control">
+        </label>
+        <p class="error" th:errors="${round.score}"></p>
     </div>
     <div class ="form-group">
         <input type="submit" value="Add Round" class="btn-success">

@@ -12,6 +12,7 @@
         <label>Name
             <input th:field="${player.name}" class="form-control">
         </label>
+        <p class="error" th:errors="${player.name}"></p>
     </div>
     <div class ="form-group">
         <input type="submit" value="Add Player" class="btn-success">

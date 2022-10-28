@@ -12,11 +12,13 @@
         <label>Course Name
             <input th:field="${course.name}" class="form-control">
         </label>
+        <p class="error" th:errors="${course.name}"></p>
     </div>
     <div class ="form-group">
         <label>Course location
             <input th:field="${course.location}" class="form-control">
         </label>
+        <p class="error" th:errors="${course.location}"></p>
     </div>
     <div class ="form-group">
         <input type="submit" value="Add Course" class="btn-success">

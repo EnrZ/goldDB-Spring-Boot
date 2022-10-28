@@ -39,13 +39,16 @@ public class RoundController {
     @PostMapping("addround")
     public String addRoundForm(@ModelAttribute @Valid Round newRound, Errors errors, Model model)  {
 
-        //the empty event object just made will have information about the fields
-        model.addAttribute("round", new Round());
+        if(errors.hasErrors()) {
+            //model.addAttribute("round", new Round());
+            //model.addAttribute(newRound);
+            model.addAttribute("title", "Add Round");
 
-
+            return "rounds/addround";
+        }
         roundRepository.save(newRound);
 
-        return "rounds/addround";
+        return "redirect:";
     }
 
 

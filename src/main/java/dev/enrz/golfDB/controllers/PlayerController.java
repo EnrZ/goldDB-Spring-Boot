@@ -32,12 +32,15 @@ public class PlayerController {
     public String addPlayerForm(@ModelAttribute @Valid Player newPlayer, Errors errors, Model model)  {
 
         //the empty event object just made will have information about the fields
-        model.addAttribute("player", new Player());
 
-
+        if(errors.hasErrors()) {
+            //model.addAttribute("player", new Player());
+            model.addAttribute("title", "Add Player");
+            return "players/addplayer";
+        }
         playerRepository.save(newPlayer);
 
-        return "players/addplayer";
+        return "redirect:";
     }
 
 

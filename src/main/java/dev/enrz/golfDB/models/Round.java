@@ -16,11 +16,11 @@ public class Round {
     @GeneratedValue
     private int rid;
 
-    @NotBlank(message="required")
+    @NotBlank(message="Date is required and must have mm/dd/yyyy format")
     @Pattern(regexp = "[0-9]{2}/[0-9]{2}/[0-9]{4}", message="mm/dd/yyyy format required")
     private String date;
 
-    @NotBlank(message = "required")
+    @NotBlank(message = "Score is required")
     @Pattern(regexp = "^\\d+$", message = "score must be a number")
     private String score;
 

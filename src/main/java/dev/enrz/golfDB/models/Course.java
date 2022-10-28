@@ -16,11 +16,11 @@ public class Course {
     private int cid;
 
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters.")
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Course name is required")
     private String name;
 
     @Size(min = 3, max = 50, message = "Location must be between 3 and 50 characters.")
-    @NotBlank(message = "Location is required")
+    @NotBlank(message = "Course location is required")
     private String location;
 
     public int getId() {

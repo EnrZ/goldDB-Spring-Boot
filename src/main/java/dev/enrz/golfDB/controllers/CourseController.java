@@ -30,13 +30,16 @@ public class CourseController {
     @PostMapping("addcourse")
     public String addCourseForm(@ModelAttribute @Valid Course newCourse, Errors errors, Model model)  {
 
-        //the empty event object just made will have information about the fields
-        model.addAttribute("course", new Course());
 
+        if(errors.hasErrors()) {
+            //the empty event object just made will have information about the fields
+                model.addAttribute("title", "Add Course");
 
+            return "courses/addcourse";
+        }
         courseRepository.save(newCourse);
 
-        return "courses/addcourse";
+        return "redirect:";
     }
 
 

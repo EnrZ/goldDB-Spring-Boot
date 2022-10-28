@@ -40,9 +40,10 @@ public class RoundController {
     public String addRoundForm(@ModelAttribute @Valid Round newRound, Errors errors, Model model)  {
 
         if(errors.hasErrors()) {
-            //model.addAttribute("round", new Round());
-            //model.addAttribute(newRound);
             model.addAttribute("title", "Add Round");
+
+            //without this, the course options disappear after validation error
+            model.addAttribute("courses",courseRepository.findAll());
 
             return "rounds/addround";
         }

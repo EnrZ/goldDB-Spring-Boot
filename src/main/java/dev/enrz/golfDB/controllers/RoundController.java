@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("rounds")
@@ -54,14 +55,33 @@ public class RoundController {
 
 
     @GetMapping
-    public String displayRounds(@RequestParam(required = false) Integer categoryId, Model model) {
+    public String displayRounds(@RequestParam(required = false) Integer roundId, Model model) {
 
-        if (categoryId == null) {
+        if (roundId == null) {
             model.addAttribute("rounds", roundRepository.findAll());
             model.addAttribute("title", "All Rounds");
         }
 
 
         return "rounds/index";
+    }
+
+    @GetMapping("info")
+    public String displayRoundInformation(@RequestParam Integer roundId, Model model){
+
+        Optional<Round> result = roundRepository.findById(roundId);
+
+        if(result.isEmpty()){
+            String template = String.format("Invalid Event ID  %s", roundId);
+            model.addAttribute("title", template);
+        } else {
+            Round round = result.get();
+            String template = String.format("Event ID  %s", roundId);
+            model.addAttribute("title", template);
+
+            model.addAttribute("round", round);
+        }
+
+        return "rounds/info";
     }
 }

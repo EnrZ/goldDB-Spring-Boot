@@ -12,14 +12,13 @@
     <table class= "table table-striped">
         <thead>
         <tr>
-            <th>Round Date Played & Course Where It Took Place</th>
+            <th>Info for specific round</th>
         </tr>
         </thead>
-        <tr th:each="round : ${rounds}">
-            <td> <a th:href="'/rounds/info?roundId=' + ${round.rid}" th:text="${round.date}"></a></td>
+        <tr>
+            <td th:text="${round.score}"> </td>
             <td th:text="${round.course.name}"></td>
         </tr>
     </table>
-
-    </body>
+</body>
 </html>
